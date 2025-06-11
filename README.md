@@ -1,45 +1,69 @@
-# CatCare - Cat Disease Diagnosis Application
+# CAPSTONE MVP
 
-CatCare is a modern and responsive web application that helps cat owners identify potential diseases based on uploaded cat photos and selected symptoms.
+## Overview
+
+CAPSTONE MVP is a minimal viable product designed to showcase the core features and functionalities of the CAPSTONE project. The project aims to deliver a streamlined and efficient solution for [briefly describe the purpose of the project].
 
 ## Features
 
-- Upload cat photos with preview
-- Select symptoms from provided list
-- Estimative diagnosis based on symptoms
-- Initial care recommendations
-- PWA (Progressive Web App) support
-- Responsive on all screen sizes
-- Can be used offline
+- [Feature 1: Briefly describe what this feature does]
+- [Feature 2: Briefly describe what this feature does]
+- [Feature 3: Briefly describe what this feature does]
 
 ## Technologies Used
 
-- HTML5
-- Vanilla JavaScript
-- Tailwind CSS
-- Vite
-- PWA (Service Worker, Web App Manifest)
+- [Technology 1: e.g., Node.js, Python, etc.]
+- [Technology 2: e.g., React, Flask, etc.]
+- [Technology 3: e.g., PostgreSQL, MongoDB, etc.]
 
-## How to Run the Project
+## Installation
 
-1. Clone this repository
-2. Install dependencies:
+To get started with CAPSTONE MVP, follow these steps:
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/thekomunis/capstone-mvp.git
+   ```
+2. Navigate into the project directory:
+   ```bash
+   cd capstone-mvp
+   ```
+3. Install the dependencies:
    ```bash
    npm install
    ```
-3. Run development server:
+4. Run the application:
    ```bash
-   npm run dev
-   ```
-4. Build for production:
-   ```bash
-   npm run build
+   npm start
    ```
 
-## Deployment
+## Usage
 
-The application can be easily deployed to GitHub Pages or Vercel using the existing Vite configuration.
+[Provide instructions on how to use the application. Include any necessary configuration or setup required before running the project.]
 
-## Important Note
+## Contributing
 
-The diagnosis provided by this application is estimative and does not replace consultation with a veterinarian. Contact a veterinarian immediately if your cat's condition worsens or symptoms persist.
+Contributions are welcome! Please follow these steps to contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add your message here"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a pull request and describe your changes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Contact
+
+For any inquiries or support, please contact [Your Name] at [your-email@example.com].

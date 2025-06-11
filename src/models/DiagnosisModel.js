@@ -1,6 +1,10 @@
 export default class DiagnosisModel {
+  constructor() {
+    this.baseURL = import.meta.env.VITE_API_URL;
+  }
+
   async predict(payload) {
-    const response = await fetch("http://localhost:3000/predict", {
+    const response = await fetch(`${this.baseURL}/predict`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload), // payload = { userId, data }
@@ -13,14 +17,14 @@ export default class DiagnosisModel {
   async predictImage(file, userId) {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("userId", userId); // kirim userId juga
+    formData.append("userId", userId);
 
-    const res = await fetch("http://localhost:3000/predict-image", {
+    const response = await fetch(`${this.baseURL}/predict-image`, {
       method: "POST",
       body: formData,
     });
 
-    if (!res.ok) throw new Error("Failed to predict image");
-    return res.json();
+    if (!response.ok) throw new Error("Failed to predict image");
+    return await response.json();
   }
 }

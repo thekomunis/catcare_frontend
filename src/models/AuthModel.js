@@ -1,6 +1,10 @@
 export default class AuthModel {
+  constructor() {
+    this.baseURL = import.meta.env.VITE_API_URL;
+  }
+
   async login(email, password) {
-    const response = await fetch("http://localhost:3000/login", {
+    const response = await fetch(`${this.baseURL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -15,7 +19,7 @@ export default class AuthModel {
   }
 
   async register(name, email, password) {
-    const response = await fetch("http://localhost:3000/register", {
+    const response = await fetch(`${this.baseURL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),

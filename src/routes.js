@@ -40,7 +40,7 @@ const routes = {
     );
     new HomePresenter(new HomeView());
   },
-  "/diagnosis": () => {
+  "/diagnosis": async () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) {
       showAlertAndRedirect(
@@ -49,6 +49,9 @@ const routes = {
       );
       return;
     }
+    const { default: DiagnosisPresenter } = await import(
+      "./presenters/DiagnosisPresenter.js"
+    );
     return new DiagnosisPresenter();
   },
   "/about": async () => {
@@ -64,9 +67,6 @@ const routes = {
     new LoginPresenter(new AuthView());
   },
   "/register": async () => {
-    const { default: RegisterPresenter } = await import(
-      "./presenters/RegisterPresenter.js"
-    );
     new RegisterPresenter(new AuthView());
   },
 };

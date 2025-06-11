@@ -108,7 +108,8 @@ export default class DiagnosisView {
     </div>
 
     <div class="container mx-auto px-4">
-      <div class="bg-white rounded-2xl shadow-xl p-10 flex flex-col items-center gap-6 border border-[color:var(--color-border)]">
+      <div class="bg-white rounded-2xl shadow-xl p-10 flex flex-col items-center gap-6 border border-[color:var(--color-border)]"  style="
+  animation: fadeInUp 0.6s ease-out both;">
         <div class="flex flex-col items-center gap-4 mb-8">
           <img src="/cat-icon.png" alt="CatCare Logo" class="h-20 w-20 mb-2 drop-shadow-lg transform hover:scale-105 transition-transform duration-300" />
           <h1 class="text-4xl font-extrabold text-[color:var(--color-darkblue)] tracking-tight">CatCare</h1>

@@ -8,7 +8,7 @@ export default class AboutView {
       <div class="container mx-auto px-4">
         <div class="flex flex-col items-center justify-center min-h-[80vh] bg-[color:var(--color-lightergray)] px-2 py-8">
           <div class="max-w-2xl w-full mx-auto">
-            <div class="bg-white rounded-2xl shadow-xl p-10 flex flex-col items-center gap-6 border border-[color:var(--color-border)]">
+            <div class="bg-white rounded-2xl shadow-xl p-10 flex flex-col items-center gap-6 border border-[color:var(--color-border)]" style="animation: fadeInUp 0.6s ease-out both; ">
               <img src="/cat-icon.png" alt="CatCare Logo" class="h-20 w-20 mb-2 drop-shadow" />
               <h1 class="text-4xl font-extrabold text-[color:var(--color-darkblue)] mb-4 text-center">About CatCare</h1>
               <div class="text-[color:var(--color-darkblue)] text-lg opacity-90 text-justify space-y-4">

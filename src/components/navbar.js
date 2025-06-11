@@ -48,8 +48,19 @@ export function createNavbar() {
   // SPA NAVIGATION
   navbar.querySelectorAll("a[data-link]").forEach((link) => {
     link.addEventListener("click", (e) => {
-      e.preventDefault();
       const href = link.getAttribute("href");
+
+      // Cek kalau klik ke halaman diagnosis
+      if (href === "/diagnosis") {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user) {
+          e.preventDefault();
+          showToast("You must be logged in to access Diagnosis", 2500, "warn");
+          return;
+        }
+      }
+
+      e.preventDefault();
       history.pushState(null, "", href);
       window.dispatchEvent(new PopStateEvent("popstate"));
     });
@@ -72,8 +83,13 @@ export function createNavbar() {
 
     navbar.querySelectorAll("#logoutBtn, #mobileLogoutBtn").forEach((btn) =>
       btn.addEventListener("click", () => {
-        localStorage.removeItem("user");
-        navigate("/");
+        showLoader();
+        setTimeout(() => {
+          localStorage.removeItem("user");
+          navigate("/");
+          hideLoader();
+          showToast("Logout successful!");
+        }, 1000);
       })
     );
   } else {
@@ -91,6 +107,20 @@ export function createNavbar() {
     `;
   }
 
+  const loader = document.createElement("div");
+  loader.id = "globalLoader";
+  loader.className =
+    "hidden fixed inset-0 flex items-center justify-center bg-white bg-opacity-70 backdrop-blur z-50";
+  loader.innerHTML = `<div class="loader w-12 h-12 border-4 border-t-4 border-[color:var(--color-peach)] rounded-full animate-spin"></div>`;
+  document.body.appendChild(loader);
+
+  const toast = document.createElement("div");
+  toast.id = "globalToast";
+  toast.className =
+    "fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow z-50 opacity-0 transition-all duration-500";
+  toast.textContent = "Logout successful!";
+  document.body.appendChild(toast);
+
   return navbar;
 }
 
@@ -102,6 +132,34 @@ function createNavLink(href, label, currentPath) {
   return `<a href="${href}" data-link class="nav-link ${
     isActive ? "nav-link-active" : ""
   }">${label}</a>`;
+}
+
+function showLoader() {
+  document.getElementById("globalLoader")?.classList.remove("hidden");
+}
+
+function hideLoader() {
+  document.getElementById("globalLoader")?.classList.add("hidden");
+}
+
+function showToast(message = "Success!", duration = 2000, type = "success") {
+  const toast = document.getElementById("globalToast");
+  if (!toast) return;
+
+  toast.textContent = message;
+
+  // Update background color by type
+  toast.className =
+    "fixed bottom-6 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg shadow z-50 opacity-0 transition-all duration-500 " +
+    (type === "success" ? "bg-green-500 text-white" : "bg-red-500 text-white");
+
+  toast.classList.remove("opacity-0");
+  toast.classList.add("opacity-100");
+
+  setTimeout(() => {
+    toast.classList.remove("opacity-100");
+    toast.classList.add("opacity-0");
+  }, duration);
 }
 
 export function highlightActiveNav() {

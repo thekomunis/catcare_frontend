@@ -57,6 +57,7 @@ export default class AuthView {
           <div id="${messageId}" class="mt-2 text-center text-sm"></div>
         </div>
       </div>
+      <div id="globalToast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg shadow z-50 opacity-0 transition-all duration-500 bg-green-500 text-white text-sm"></div>
     `;
   }
 
@@ -74,9 +75,33 @@ export default class AuthView {
   showMessage(msg, success = true) {
     const messageEl = document.getElementById(`${this.type}Message`);
     if (!messageEl) return;
+
     messageEl.textContent = msg;
     messageEl.className = `mt-4 text-center text-sm ${
       success ? "text-green-600" : "text-red-600"
     }`;
+
+    this.showToast(msg, success ? "success" : "error");
+  }
+
+  showToast(message = "Success!", type = "success") {
+    const toast = document.getElementById("globalToast");
+    if (!toast) return;
+
+    toast.textContent = message;
+
+    toast.className =
+      "fixed bottom-6 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-lg shadow z-50 text-sm transition-all duration-500 " +
+      (type === "success"
+        ? "bg-green-500 text-white"
+        : "bg-red-500 text-white");
+
+    toast.classList.remove("opacity-0");
+    toast.classList.add("opacity-100");
+
+    setTimeout(() => {
+      toast.classList.remove("opacity-100");
+      toast.classList.add("opacity-0");
+    }, 3000);
   }
 }

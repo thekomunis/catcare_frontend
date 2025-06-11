@@ -86,6 +86,14 @@ export default class DiagnosisView {
     });
   }
 
+  showLoader() {
+    document.getElementById("loader").classList.remove("hidden");
+  }
+
+  hideLoader() {
+    document.getElementById("loader").classList.add("hidden");
+  }
+
   renderContent() {
     const container = document.querySelector("main");
 
@@ -95,6 +103,10 @@ export default class DiagnosisView {
     }
 
     container.innerHTML = `
+    <div id="loader" class="hidden fixed inset-0 flex items-center justify-center bg-white bg-opacity-80 z-50">
+      <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-20 w-20 border-t-blue-600 animate-spin"></div>
+    </div>
+
     <div class="container mx-auto px-4">
       <div class="bg-white rounded-2xl shadow-xl p-10 flex flex-col items-center gap-6 border border-[color:var(--color-border)]">
         <div class="flex flex-col items-center gap-4 mb-8">

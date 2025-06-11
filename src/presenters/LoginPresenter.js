@@ -16,6 +16,7 @@ export default class LoginPresenter {
   }
 
   async handleLogin({ email, password }) {
+    this.view.showLoader();
     try {
       const user = await this.model.login(email, password);
       localStorage.setItem("user", JSON.stringify(user));
@@ -23,6 +24,8 @@ export default class LoginPresenter {
       setTimeout(() => navigate("/"), 1000);
     } catch (err) {
       this.view.showMessage(err.message, false);
+    } finally {
+      this.view.hideLoader();
     }
   }
 }

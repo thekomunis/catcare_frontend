@@ -4,6 +4,14 @@ export default class AuthView {
     this.container = document.querySelector("main");
   }
 
+  showLoader() {
+    document.getElementById("loader").classList.remove("hidden");
+  }
+
+  hideLoader() {
+    document.getElementById("loader").classList.add("hidden");
+  }
+
   renderContent() {
     if (!this.container) return;
 
@@ -19,6 +27,9 @@ export default class AuthView {
     const messageId = isLogin ? "loginMessage" : "registerMessage";
 
     this.container.innerHTML = `
+    <div id="loader" class="hidden fixed inset-0 flex items-center justify-center bg-white bg-opacity-80 z-50">
+      <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-20 w-20 border-t-blue-600 animate-spin"></div>
+    </div>
       <div class="container mx-auto px-4 flex justify-center items-center min-h-[80vh]">
         <div class="glass-card max-w-md w-full flex flex-col items-center gap-8 p-12 relative">
           <div class="flex flex-col items-center gap-2">

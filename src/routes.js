@@ -67,6 +67,9 @@ const routes = {
     new LoginPresenter(new AuthView());
   },
   "/register": async () => {
+    const { default: RegisterPresenter } = await import(
+      "./presenters/RegisterPresenter.js"
+    );
     new RegisterPresenter(new AuthView());
   },
 };

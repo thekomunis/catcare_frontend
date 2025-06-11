@@ -22,10 +22,14 @@ export default class DiagnosisPresenter {
       const user = JSON.parse(localStorage.getItem("user"));
       const userId = user?.id || null;
 
+      this.view.showLoader();
+
       const result = await this.model.predictImage(file, userId);
       this.view.showImageResult(result);
     } catch (error) {
       this.view.notify("Image diagnosis failed. Please try again.");
+    } finally {
+      this.view.hideLoader();
     }
   }
 
@@ -34,13 +38,16 @@ export default class DiagnosisPresenter {
       const user = JSON.parse(localStorage.getItem("user"));
       const userId = user?.id || null;
 
-      const result = await this.model.predict({ userId, data });
+      this.view.showLoader();
 
+      const result = await this.model.predict({ userId, data });
       this.view.showFormResult(data, result);
       return result;
     } catch (error) {
       this.view.notify("Form prediction failed.");
       throw error;
+    } finally {
+      this.view.hideLoader();
     }
   }
 

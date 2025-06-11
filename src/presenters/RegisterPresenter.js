@@ -16,6 +16,7 @@ export default class RegisterPresenter {
   }
 
   async handleRegister({ name, email, password }) {
+    this.view.showLoader();
     try {
       const user = await this.model.register(name, email, password);
       localStorage.setItem("user", JSON.stringify(user));
@@ -23,6 +24,8 @@ export default class RegisterPresenter {
       setTimeout(() => navigate("/"), 1000);
     } catch (err) {
       this.view.showMessage(err.message, false);
+    } finally {
+      this.view.hideLoader();
     }
   }
 }

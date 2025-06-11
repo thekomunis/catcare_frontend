@@ -1,0 +1,357 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-peach: #f79b72;
+  --color-darkblue: #2a4759;
+  --color-lightgray: #dddddd;
+  --color-lightergray: #eeeeee;
+  --color-background: #eeeeee;
+  --color-surface: #ffffff;
+  --color-text: #2a4759;
+  --color-text-light: #64748b;
+  --color-border: #dddddd;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-[color:var(--color-peach)] text-white rounded-xl font-semibold 
+    hover:bg-[#e88a5e] transition-all duration-300 
+    hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-peach)] 
+    focus:ring-offset-2 shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-[color:var(--color-darkblue)] text-white rounded-xl font-semibold
+    hover:bg-opacity-90 transition-all duration-300 focus:outline-none 
+    focus:ring-2 focus:ring-[color:var(--color-darkblue)] focus:ring-offset-2 
+    shadow-lg hover:shadow-xl;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-[color:var(--color-border)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[color:var(--color-peach)] transition-all duration-300 bg-white shadow-sm text-[color:var(--color-darkblue)] placeholder:text-[color:var(--color-text-light)];
+  }
+
+  .select-field {
+    @apply w-full px-4 py-3 border border-[color:var(--color-border)] rounded-xl
+    focus:outline-none focus:ring-2 focus:ring-[color:var(--color-peach)] 
+    transition-all duration-300 bg-white shadow-sm;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl border border-[color:var(--color-border)] flex flex-col gap-6;
+  }
+
+  .diagnosis-card {
+    @apply bg-white rounded-2xl shadow-2xl p-8 md:p-12 flex flex-col gap-8 
+    items-center w-full max-w-2xl border border-[color:var(--color-border)]
+     transition-all duration-300;
+  }
+
+  .diagnosis-form-grid {
+    @apply grid grid-cols-1 md:grid-cols-5 gap-8 w-full;
+  }
+
+  .diagnosis-col-left {
+    @apply flex flex-col gap-4 md:col-span-2;
+  }
+
+  .diagnosis-col-right {
+    @apply flex flex-col gap-4 md:col-span-3;
+  }
+
+  .diagnosis-submit-row {
+    @apply md:col-span-5;
+  }
+
+  .upload-area {
+    @apply flex flex-col items-center justify-center border-2 border-dashed 
+    border-[color:var(--color-border)] rounded-xl p-8 bg-[color:var(--color-lightergray)] 
+    hover:border-[color:var(--color-peach)] transition-all duration-300 
+    cursor-pointer hover:bg-opacity-50;
+  }
+
+  .notification {
+    @apply fixed bottom-4 right-4 transform translate-y-full opacity-0 
+    transition-all duration-300 z-50;
+  }
+
+  .notification-show {
+    @apply translate-y-0 opacity-100;
+  }
+
+  .notification-hide {
+    @apply translate-y-full opacity-0;
+  }
+
+  .nav-link {
+    @apply px-4 py-2 rounded-lg font-semibold text-[color:var(--color-darkblue)] hover:bg-[color:var(--color-lightergray)] hover:text-[color:var(--color-peach)] transition-colors duration-200;
+  }
+
+  .nav-link-active {
+    @apply bg-[color:var(--color-peach)] text-white shadow font-bold;
+  }
+}
+
+@layer utilities {
+  .grid-cols-5-custom {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+#diagnosisModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Diagnosis card */
+.diagnosis-card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Close button */
+#closeDiagnosis {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #f87171;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#closeDiagnosis:hover {
+  background: #ef4444;
+}
+
+/* Result box */
+#result {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #dbeafe;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Form input */
+.diagnosis-card form input,
+.diagnosis-card form select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
+/* Submit button */
+.diagnosis-card form button[type="submit"] {
+  background: #3b82f6;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.diagnosis-card form button[type="submit"]:hover {
+  background: #2563eb;
+}
+
+#diagnosisForm {
+  width: 100%;
+}
+
+.symptoms-container {
+  display: flex;
+  flex-wrap: wrap; /* biar nge-wrap kalau gak muat satu baris */
+  gap: 12px; /* jarak antar checkbox */
+  margin-top: 8px;
+}
+
+.symptoms-container label {
+  flex: 1 1 45%; /* dua kolom, bisa responsif */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.symptoms-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.symptoms-container input[type="checkbox"]:checked + span,
+.symptoms-container input[type="checkbox"]:checked + label {
+  background-color: #e0f7fa;
+  border-color: #4caf50;
+  color: #2a4759;
+}
+
+.symptoms-container input[type="checkbox"]:checked {
+  accent-color: #4caf50;
+}
+
+/* hover efek */
+.symptoms-container label:hover {
+  background-color: #e0f7fa;
+  border-color: #4caf50;
+}
+
+/* Upload area styling */
+.upload-area {
+  border: 2px dashed var(--color-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: border-color 0.3s, background-color 0.3s;
+  cursor: pointer;
+}
+
+.upload-area:hover {
+  border-color: var(--color-darkblue);
+  background-color: rgba(79, 70, 229, 0.05);
+}
+
+/* Image preview with transition */
+#imagePreview {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+#imagePreview.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#imagePreview.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* Result card */
+#result .card {
+  border: 2px solid var(--color-border);
+  border-radius: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Notification fade */
+#notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+#notification.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 2rem;
+  border: 1.5px solid rgba(247, 155, 114, 0.18);
+}
+.input-glass {
+  background: rgba(238, 238, 238, 0.7);
+  border: 1.5px solid #dddddd;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  width: 100%;
+  font-size: 1rem;
+  color: #2a4759;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.input-glass:focus {
+  border: 1.5px solid #f79b72;
+  box-shadow: 0 0 0 2px #f79b7240;
+  background: #fff;
+}
+.icon-left {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #f79b72;
+}
+.btn-glass {
+  background: linear-gradient(90deg, #f79b72 60%, #2a4759 100%);
+  color: #fff;
+  border: none;
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.75rem 0;
+  width: 100%;
+  box-shadow: 0 4px 16px 0 #f79b7240;
+  transition: background 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.btn-glass:hover {
+  background: linear-gradient(90deg, #2a4759 60%, #f79b72 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+.paw-accent {
+  position: absolute;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.5;
+}

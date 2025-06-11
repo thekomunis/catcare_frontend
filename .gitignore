@@ -1,0 +1,23 @@
+# .gitignore
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+
+# macOS
+.DS_Store
+
+# Logs
+logs
+*.log
+yarn-debug.log*
+yarn-error.log*
+
+# Build directories
+build/
+out/
+
